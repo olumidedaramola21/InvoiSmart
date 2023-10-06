@@ -5,6 +5,12 @@
   <title>A simple, clean, and responsive HTML invoice template</title>
   
   <style>
+    @page {
+    size: a4 portrait;
+    margin: 0mm 0mn 0mn 0mn;
+    counter-increment: page;
+  }
+
   .invoice-box {
     max-width: 800px;
     margin: auto;
@@ -67,10 +73,7 @@
     font-weight: bold;
   }
   
-  @page {
-    size: a4 portrait;
-    margin: 0mm 0mn 0mn 0mn;
-  }
+
 
   @media only screen and (max-width: 600px) {
     .invoice-box table tr.top table td {
@@ -121,9 +124,9 @@
                 <img src="https://imgur.com/edx5Sb0.png" style="height: 100px;">
               </td>
               <td>
-                Invoice #: 123<br>
+                Invoice #: {{invoice_number}}<br>
                 Created: {{date}}<br>
-                Due: November 7, 2023
+                Due: {{duedate}}
               </td>
             </tr>
           </table>
@@ -135,14 +138,14 @@
           <table>
             <tr>
               <td>
-                Python Tips.<br>
-                12345 Sunny Road<br>
-                Sunnyville, CA 12345
+                {{from_addr['company_name']}}<br>
+                {{from_addr['addr1']}}<br>
+                {{from_addr['addr2']}}
               </td>
               <td>
-                Acme Corp.<br>
-                John Doe<br>
-                john@example.com
+                {{to_addr['company_name']}}<br>
+                {{to_addr['person_name']}}<br>
+                {{to_addr['person_email']}}
               </td>
             </tr>
           </table>
@@ -158,37 +161,20 @@
         </td>
       </tr>
       
+      {% for item in items %}
       <tr class="item">
         <td>
-          Website design
+          {{item['title']}}
         </td>
         <td>
-          $300.00
-        </td>
+          ${{item['charge']}}
       </tr>
-      
-      <tr class="item">
-        <td>
-          Hosting (3 months)
-        </td>
-        <td>
-          $75.00
-        </td>
-      </tr>
-      
-      <tr class="item last">
-        <td>
-          Domain name (1 year)
-        </td>
-        <td>
-          $10.00
-        </td>
-      </tr>
+      {% endfor %}
       
       <tr class="total">
         <td></td>
         <td>
-           Total: $385.00
+           Total: ${{total}}
         </td>
       </tr>
     </table>
