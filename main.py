@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, request, send_file
 from datetime import datetime
 from weasyprint import HTML
 import os
@@ -7,26 +7,29 @@ import io
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def hello_world():
+    posted_data = request.get_json() or {}
     today = datetime.today().strftime("%B %#d, %Y")
-    invoice_number = 123
-    from_addr = {
-        "company_name": "Python Tip.",
-        "addr1": "12345 Sunny Road",
-        "addr2": "Sunnyville, CA 12345",
+    default_data = {
+        "duedate": "November 7, 2023",
+        "from_addr": {
+            "company_name": "Python Tip.",
+            "addr1": "12345 Sunny Road",
+            "addr2": "Sunnyville, CA 12345",
+        },
+        "invoice_number": 123,
+        "items": [
+            {"title": "website design", "charge": 300.00},
+            {"title": "Hosting (3 months)", "charge": 75.00},
+            {"title": "Domain name (1 year)", "charge": 10.00},
+        ],
+        "to_addr": {
+            "company_name": "Acme Corp.",
+            "person_name": "John Dilly",
+            "person_email": "john@example.com",
+        },
     }
-    to_addr = {
-        "company_name": "Acme Corp.",
-        "person_name": "John Dilly",
-        "person_email": "john@example.com",
-    }
-    items = [
-        {"title": "website design", "charge": 300.00},
-        {"title": "Hosting (3 months)", "charge": 75.00},
-        {"title": "Domain name (1 year)", "charge": 10.00},
-    ]
-    duedate = "November 7, 2023"
     total = sum([i["charge"] for i in items])
     rendered = render_template(
         "invoice.html",
