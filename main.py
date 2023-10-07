@@ -1,6 +1,8 @@
+from flask import Flask, render_template, send_file
 from datetime import datetime
-from flask import Flask, render_template
+from weasyprint import HTML
 import os
+import io
 
 app = Flask(__name__)
 
@@ -26,7 +28,7 @@ def hello_world():
     ]
     duedate = "November 7, 2023"
     total = sum([i["charge"] for i in items])
-    return render_template(
+    rendered = render_template(
         "invoice.html",
         date=today,
         from_addr=from_addr,
@@ -36,6 +38,9 @@ def hello_world():
         invoice_number=invoice_number,
         duedate=duedate,
     )
+    html = HTML(string=rendered)
+    rendered_pdf = html.write_pdf()
+    return send_file(io.BytesIO(rendered_pdf), attachment_filename="invoice.pdf")
 
 
 if __name__ == "__main__":
