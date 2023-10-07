@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, send_file
-from datetime import datetime
-from weasyprint import HTML
 import os
 import io
+from datetime import datetime
+from weasyprint import HTML
+
 
 app = Flask(__name__)
 
@@ -30,6 +31,12 @@ def hello_world():
             "person_email": "john@example.com",
         },
     }
+    duedate = posted_data.get("duedate", default_data["duedate"])
+    from_addr = posted_data.get("from_addr", default_data["from_addr"])
+    to_addr = posted_data.get("to_addr", default_data["to_addr"])
+    items = posted_data.get("items", default_data["items"])
+    invoice_number = posted_data.get("invoice_number", default_data["invoice_number"])
+
     total = sum([i["charge"] for i in items])
     rendered = render_template(
         "invoice.html",
