@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, jsonify
 import os
 import io
 from datetime import datetime
@@ -10,7 +10,11 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def hello_world():
-    posted_data = request.get_json() or {}
+    if request.headers["Content-Type"] == "application/json":
+        data = request.get_json()
+        posted_data = request.get_json() or {}
+        # Process the data as required
+    # posted_data = request.get_json() or {}
     today = datetime.today().strftime("%B %#d, %Y")
     default_data = {
         "duedate": "November 7, 2023",
@@ -49,8 +53,8 @@ def hello_world():
         duedate=duedate,
     )
     html = HTML(string=rendered)
-    rendered_pdf = html.write_pdf()
-    return send_file(io.BytesIO(rendered_pdf), attachment_filename="invoice.pdf")
+    rendered_pdf = html.write_pdf("./static/invoice.pdf")
+    return send_file("./static/invoice.pdf")
 
 
 if __name__ == "__main__":
