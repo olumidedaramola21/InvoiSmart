@@ -47,4 +47,4 @@ This ensures that the server processes the incoming data correctly.
      ```
 6. Click the "Send" button to make the POST request.
 
-Ensure that your Flask application is running and listening on `http://localhost:5000/`. The data structure in the JSON body should match what your Flask application expects. Adjust the JSON data as needed based on your application's requirements.
+Ensure that your Flask application is running and listening on `http://localhost:5000/`. The data structure in the JSON body should match what Flask application expects.
