@@ -16,16 +16,16 @@ Make sure you have the following dependencies installed:
 
 To run the application, execute the following command in the terminal:
 
-```bash
-python yourapp.py
+
+`python yourapp.py`
 
 Please note that running the application on Chrome directly may not be effective. Clients are required to send data in the form of JSON using the header:
 
-if request.headers.get("Content-Type") == "application/json":
+`if request.headers.get("Content-Type") == "application/json":`
 
 This ensures that the server processes the incoming data correctly.
 
-### Using Postman to Replicate cURL Command
+### Using Postman to send POST request
 
 1. **Open Postman.**
 2. Set the request type to `POST`.
