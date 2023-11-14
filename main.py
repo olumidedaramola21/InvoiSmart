@@ -2,9 +2,10 @@ from weasyprint import HTML
 from flask import Flask, render_template, request, send_file
 import os
 from datetime import datetime
-
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # This will enable CORS for all routes
 
 
 @app.route("/")
