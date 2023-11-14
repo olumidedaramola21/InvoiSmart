@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def create_pdf():
     if request.headers.get("Content-Type") == "application/json":
         posted_data = request.get_json() or {}
@@ -52,7 +52,7 @@ def create_pdf():
             duedate=duedate,
         )
         HTML(string=rendered).write_pdf("./static/invoice.pdf")
-        # Process the data as required
+        return "OK", 200
 
     else:
         return (
