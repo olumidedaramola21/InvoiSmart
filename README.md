@@ -53,12 +53,8 @@ Ensure that your Flask application is running and listening on `http://localhost
 
 ## Possible Future Enhancement
 
-
  **Invoice Numbering:**
    - Implement an automatic invoice numbering system to assign unique numbers to each generated invoice.
-
- **Tax Calculation:**
-   - Integrate a tax calculation feature, allowing users to specify tax rates and apply them to invoice totals.
 
  **Discounts and Coupons:**
    - Provide the ability to apply discounts or coupons to invoices, both as a percentage and fixed amount.
