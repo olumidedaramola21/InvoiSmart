@@ -72,20 +72,11 @@ Ensure that your Flask application is running and listening on `http://localhost
  **Email Integration:**
    - Enable users to send invoices directly to clients via email and include an option to attach the PDF invoice.
 
- **Invoice History:**
-   - Create a history log that tracks changes made to invoices, providing an audit trail for each document.
-
  **Due Date and Late Fee:**
     - Allow users to set due dates for invoices and implement automatic late fee calculation for overdue payments.
 
- **Dashboard and Analytics:**
-    - Build a dashboard that provides users with insights into their invoicing history, income, and outstanding payments.
-
  **Integration with Payment Gateways:**
     - Integrate popular payment gateways to facilitate online payments directly from the invoice.
-
- **Localization:**
-    - Support multiple languages and locales to cater to users from different regions.
 
  **Offline Mode:**
     - Implement a feature that allows users to generate invoices and access basic functionality even when offline, with data synchronization once online.
