@@ -60,8 +60,6 @@ Ensure that your Flask application is running and listening on `http://localhost
 2. **Client Management:**
    - Add a client management system where users can store and manage information about their clients.
 
-3. **Itemized Billing:**
-   - Enable users to add detailed line items to the invoice, including descriptions, quantities, rates, and totals.
 
 4. **Tax Calculation:**
    - Integrate a tax calculation feature, allowing users to specify tax rates and apply them to invoice totals.
