@@ -1,6 +1,6 @@
-# InvoiSmart
+# Invoice Generator
 
-A Flask-based automatic invoice generator leveraging WeasyPrint, featuring a customizable invoice template. This system dynamically generates invoices using Jinja, simplifying the process of crafting polished and professional invoices.
+A Flask-based invoice generator leveraging WeasyPrint, featuring a customizable invoice template. This system dynamically generates invoices using Jinja, simplifying the process of crafting polished and professional invoices.
 
 ## Requirements:
 
